@@ -56,5 +56,40 @@ if(cl&&!rm){var sq=[].slice.call(cl.querySelectorAll("i")),sk=-1,st=0;
 var pn=document.getElementById("pn"),pc=document.querySelector(".pcard");
 if(pn&&pc&&!rm){pn.textContent=(100000).toLocaleString("ru-RU");var io2=new IntersectionObserver(function(es){if(es[0].isIntersecting){io2.disconnect();var t0=performance.now()+500,D=2400;(function s(t){var k=Math.max(0,Math.min(1,(t-t0)/D)),e=1-Math.pow(1-k,3),v=k<1?Math.round((100000-20000*e)/100)*100:80000;pn.textContent=v.toLocaleString("ru-RU");if(k<1)requestAnimationFrame(s)})(performance.now())}},{threshold:.6});io2.observe(pc)}
 /* form */
-document.getElementById("fi").onchange=function(e){var f=e.target.files[0];if(f)document.getElementById("fn").textContent=f.name.length>22?f.name.slice(0,20)+"…":f.name};
-document.getElementById("fm").onsubmit=function(e){e.preventDefault();var g=this.querySelector(".go");g.textContent="Спасибо. Скоро вернёмся!";g.disabled=true;g.classList.add("sent")};
+var form = document.getElementById("fm");
+var fileInput = document.getElementById("fi");
+var fileName = document.getElementById("fn");
+
+fileInput.onchange = function(e) {
+    var f = e.target.files[0];
+    if (f) fileName.textContent = f.name;
+};
+
+form.onsubmit = async function(e) {
+    e.preventDefault();
+
+    var g = this.querySelector(".go");
+    g.disabled = true;
+    g.textContent = "Отправляем…";
+
+    try {
+        var response = await fetch(this.action, {
+            method: "POST",
+            body: new FormData(this),
+            headers: { "Accept": "application/json" }
+        });
+
+        if (response.ok) {
+            g.textContent = "Спасибо. Скоро вернёмся!";
+            g.classList.add("sent");
+            form.reset();
+            fileName.innerHTML = "Прикрепить<br>план участка";
+        } else {
+            throw new Error("Ошибка отправки");
+        }
+    } catch (error) {
+        g.disabled = false;
+        g.textContent = "Получить расчёт";
+        alert("Не удалось отправить заявку. Попробуйте ещё раз.");
+    }
+};
