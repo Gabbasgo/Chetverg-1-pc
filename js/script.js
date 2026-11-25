@@ -60,6 +60,9 @@ var form = document.getElementById("fm");
 var fileInput = document.getElementById("fi");
 var fileName = document.getElementById("fn");
 
+var forminit = new Forminit();
+var FORM_ID = "s1m4qo2qifu";
+
 fileInput.onchange = function(e) {
     var f = e.target.files[0];
     if (f) fileName.textContent = f.name;
@@ -73,23 +76,25 @@ form.onsubmit = async function(e) {
     g.textContent = "Отправляем…";
 
     try {
-        var response = await fetch(this.action, {
-            method: "POST",
-            body: new FormData(this),
-            headers: { "Accept": "application/json" }
-        });
+        var formData = new FormData(this);
+        var result = await forminit.submit(FORM_ID, formData);
 
-        if (response.ok) {
-            g.textContent = "Спасибо. Скоро вернёмся!";
-            g.classList.add("sent");
-            form.reset();
-            fileName.innerHTML = "Прикрепить<br>план участка";
-        } else {
-            throw new Error("Ошибка отправки");
+        if (result.error) {
+            throw new Error(result.error.message || "Ошибка отправки");
         }
+
+        g.textContent = "Спасибо. Скоро вернёмся!";
+        g.classList.add("sent");
+
+        form.reset();
+        fileName.innerHTML = "Прикрепить<br>план участка";
+
     } catch (error) {
+        console.error("Forminit error:", error);
+
         g.disabled = false;
         g.textContent = "Получить расчёт";
+
         alert("Не удалось отправить заявку. Попробуйте ещё раз.");
     }
 };
