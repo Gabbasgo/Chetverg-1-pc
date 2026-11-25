@@ -63,10 +63,15 @@ var fileName = document.getElementById("fn");
 var forminit = new Forminit();
 var FORM_ID = "s1m4qo2qifu";
 
-fileInput.onchange = function(e) {
-    var f = e.target.files[0];
-    if (f) fileName.textContent = f.name;
-};
+fileInput.addEventListener("change", function() {
+    var f = this.files[0];
+
+    if (f) {
+        fileName.textContent = f.name;
+    } else {
+        fileName.innerHTML = "Прикрепить<br>план участка";
+    }
+});
 
 form.onsubmit = async function(e) {
     e.preventDefault();
