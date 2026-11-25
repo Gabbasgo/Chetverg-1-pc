@@ -59,7 +59,27 @@ if(pn&&pc&&!rm){pn.textContent=(100000).toLocaleString("ru-RU");var io2=new Inte
 var form = document.getElementById("fm");
 var fileInput = document.getElementById("fi");
 var fileName = document.getElementById("fn");
+// Автоматическое исправление российского номера
+var phoneInput = form.querySelector('[name="fi-sender-phone"]');
 
+function normalizePhone() {
+    var phone = phoneInput.value.replace(/\D/g, "");
+
+    if (!phone) return;
+
+    if (phone.startsWith("8")) {
+        phone = "7" + phone.slice(1);
+    } else if (phone.startsWith("7")) {
+        // Оставляем первую семёрку
+    } else if (phone.startsWith("9")) {
+        phone = "7" + phone;
+    }
+
+    phoneInput.value = "+" + phone;
+}
+
+// Исправляем номер, когда человек покидает поле
+phoneInput.addEventListener("blur", normalizePhone);
 var forminit = new Forminit();
 var FORM_ID = "s1m4qo2qifu";
 
@@ -76,17 +96,7 @@ fileInput.addEventListener("change", function() {
 form.onsubmit = async function(e) {
     e.preventDefault();
  
-    // Приводим российский номер к формату +7
-    var phoneInput = form.querySelector('[name="fi-sender-phone"]');
-    var phone = phoneInput.value.replace(/\D/g, "");
-
-    if (phone.startsWith("8")) {
-        phone = "7" + phone.slice(1);
-    } else if (!phone.startsWith("7")) {
-        phone = "7" + phone;
-    }
-
-    phoneInput.value = "+" + phone;
+   normalizePhone();
  
     var g = this.querySelector(".go");
     g.disabled = true;
