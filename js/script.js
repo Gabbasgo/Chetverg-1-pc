@@ -75,7 +75,19 @@ fileInput.addEventListener("change", function() {
 
 form.onsubmit = async function(e) {
     e.preventDefault();
+ 
+    // Приводим российский номер к формату +7
+    var phoneInput = form.querySelector('[name="fi-sender-phone"]');
+    var phone = phoneInput.value.replace(/\D/g, "");
 
+    if (phone.startsWith("8")) {
+        phone = "7" + phone.slice(1);
+    } else if (!phone.startsWith("7")) {
+        phone = "7" + phone;
+    }
+
+    phoneInput.value = "+" + phone;
+ 
     var g = this.querySelector(".go");
     g.disabled = true;
     g.textContent = "Отправляем…";
