@@ -46,7 +46,7 @@ h2{font-weight:300;font-size:36px;line-height:1.2;text-transform:uppercase;margi
 .ht h1{margin:0;font:300 1.953cqw/1.2 var(--f);text-transform:uppercase}.ht h1 b{font-weight:700}
 .ht p{margin:.703cqw 0 0;font:300 1.133cqw/1.241 var(--f)}
 .hbtn{position:absolute;z-index:3;left:62.89%;top:71.18%;width:30.35%;height:9.93%;display:flex;align-items:center;justify-content:center;border-radius:1.25cqw;background:var(--o);color:#fff;font:600 1.5625cqw/1 var(--f);transition: transform .4s var(--e), background .3s ease;}
-.hbtn:hover{transform: translateY(-3px);background: #d09372;}
+.hbtn:hover{transform: translateY(-3px);background: #D09372;}
 .hrl{position:absolute;z-index:3;left:77.27%;bottom:14.93%;width:15.4%;height:1.1cqw;font-weight:300}
 .hrl i{position:absolute;display:block;background:#fff}
 .hrl .b1{left:0;bottom:0;width:4.96cqw;height:.74cqw}.hrl .b2{left:0;bottom:0;width:9.84cqw;height:.08cqw}.hrl .b3{left:9.8cqw;bottom:0;width:.08cqw;height:.55cqw}
@@ -206,3 +206,6 @@ body.dt #site{display:none}body.dt #pj{display:block;animation:up .8s var(--e) b
 .gl div{overflow:hidden;background:#d9d9d9;height:300px}.gl .big{grid-column:span 12;height:640px}
 .gl img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--e)}.gl div:hover img{transform:scale(1.06)}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv,.ld{opacity:1;transform:none}.sh{clip-path:none}html{scroll-behavior:auto}}
+.hbtn:hover {
+  background-color: #D09372 !important;
+}
