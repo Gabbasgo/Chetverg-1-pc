@@ -206,8 +206,3 @@ body.dt #site{display:none}body.dt #pj{display:block;animation:up .8s var(--e) b
 .gl div{overflow:hidden;background:#d9d9d9;height:300px}.gl .big{grid-column:span 12;height:640px}
 .gl img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--e)}.gl div:hover img{transform:scale(1.06)}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv,.ld{opacity:1;transform:none}.sh{clip-path:none}html{scroll-behavior:auto}}
-.hbtn:hover {
-  transform: translateY(-3px);
-  background: #E99A72 !important;
-  box-shadow: 0 14px 30px rgba(210, 119, 71, 0.25);
-}
