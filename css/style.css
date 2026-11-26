@@ -80,7 +80,7 @@ html.intro{overflow:hidden}html.intro .hcv{opacity:1}html.intro .hlg,html.intro 
 .cs:hover{transform:scale(1.06);box-shadow:0 24px 50px rgba(0,0,0,.35)}
 .cs img{height:clamp(150px,14.45vw,185px);width:auto;max-width:none;align-self:center;margin:0 0 30px}.cs.g img{margin-bottom:34px}
 .cd .rv:nth-child(4) .cs img{transform:scale(1.27);margin-bottom:34px}
-.cs h3{font:600 17px/1.25 var(--f);margin:0 0 12px}.cs p{margin:0;font-size:14px;line-height:1.35;font-weight:400;max-width:190px}
+.cs h3{font:600 17px/1.25 var(--f);margin:0 0 12px}.cs p{margin:0;font-size:14px;line-height:1.35;font-weight:400;max-width:220px}
 /* album */
 .al{padding-top:20px;padding-bottom:110px}.al h2 span{color:var(--g)}
 .ag{display:grid;grid-template-columns:minmax(0,1.07fr) minmax(0,1fr);margin-top:84px;align-items:stretch}
